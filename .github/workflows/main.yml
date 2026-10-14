@@ -24,3 +24,10 @@ jobs:
         git push origin HEAD:refs/heads/main --tags
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  workflow-keepalive:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - uses: liskin/gh-workflow-keepalive@v1
